@@ -1,7 +1,7 @@
-# Project Title: Clean Code Refactoring
-
+# Predict Customer Churn
 ## Overview:
-This project is part of Udacity's "Clean Code" course, aimed at teaching principles of writing clean, maintainable, and efficient code. The project involves taking a piece of code with poor readability and maintainability and refactoring it to adhere to best practices of clean code.
+
+- Project **Predict Customer Churn** of ML DevOps Engineer Nanodegree Udacity
 
 ## Project Description:
 The project consists of the following components:
