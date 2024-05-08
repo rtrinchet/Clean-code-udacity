@@ -37,4 +37,8 @@ conda create --name <env_name> --file requirements_py3.8.txt
 ```
 
 ## Usage:
-1. Run the refactored code
+1. Run the refactored code:
+
+```
+python churn_library.py
+```
