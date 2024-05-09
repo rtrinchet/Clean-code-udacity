@@ -42,3 +42,10 @@ conda create --name <env_name> --file requirements_py3.8.txt
 ```
 python churn_library.py
 ```
+
+2. Run the test suite:
+```
+pytest churn_script_logging_and_tests.py
+```
+
+All logs will be generated in logs/ folder

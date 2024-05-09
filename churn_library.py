@@ -4,7 +4,11 @@
 # library doc string
 """The churn_library.py is a library of functions to find customers who are likely to churn
 """
-
+import logging
+logging.basicConfig(filename="logs/churn_log.log",
+                    filemode="w",
+                    level=logging.INFO,
+                    format="%(name)s → %(levelname)s: %(message)s")
 # import libraries
 
 import os
@@ -60,11 +64,11 @@ def import_data(pth):
     output:
             df: pandas dataframe
     """
-    print('Importing data')
+    # logging.info('Importing data')
     dataf = pd.read_csv(pth)
     dataf['Churn'] = dataf['Attrition_Flag'].apply(
         lambda val: 0 if val == "Existing Customer" else 1)
-    print('Done')
+    # logging.info('Done')
     return dataf
 
 
@@ -77,7 +81,7 @@ def perform_eda(df):
     output:
             None
     """
-    print('Starting EDA')
+    # logging.info('Starting EDA')
 
     plt.figure(figsize=(20, 10))
 
@@ -95,7 +99,7 @@ def perform_eda(df):
 
     sns.heatmap(df.corr(), annot=False, cmap='Dark2_r', linewidths=2)
     plt.savefig('images/heatmap.png')
-    print('Done')
+    # logging.info('Done')
 
 
 def encoder_helper(df, category_lst):
@@ -110,8 +114,8 @@ def encoder_helper(df, category_lst):
     output:
             df: pandas dataframe with new columns for
     """
-    print('Encoding')
-
+    # logging.info('Encoding')
+    print(df.shape)
     for cat_col in category_lst:
         temp_lst = []
         category_groups = df.groupby(cat_col).mean()['Churn']
@@ -119,7 +123,8 @@ def encoder_helper(df, category_lst):
             temp_lst.append(category_groups.loc[val])
 
         df[f'{cat_col}_Churn'] = temp_lst
-    print('Done')
+    # logging.info('Done')
+    print(df.shape)
 
     return df
 
@@ -135,7 +140,7 @@ def perform_feature_engineering(df):
               y_train: y training data
               y_test: y testing data
     """
-    print('Doing F- Eng')
+    # logging.info('Doing F- Eng')
 
     df = encoder_helper(
         df,
@@ -170,7 +175,7 @@ def perform_feature_engineering(df):
     X = pd.DataFrame()
     X[keep_cols] = df[keep_cols]
     y = df['Churn']
-    print('Done')
+    # logging.info('Done')
 
     return train_test_split(X, y, test_size=0.3, random_state=42)
 
@@ -267,7 +272,7 @@ def train_models(X_train, X_test, y_train, y_test):
     output:
               None
     """
-    print('TRAINING...')
+    # logging.info('TRAINING...')
 
     # grid search
     rfc = RandomForestClassifier(random_state=42)
@@ -300,18 +305,18 @@ def train_models(X_train, X_test, y_train, y_test):
     y_test_preds_lr = lrc.predict(X_test)
 
     # scores
-    print('random forest results')
-    print('test results')
-    print(classification_report(y_test, y_test_preds_rf))
-
-    print('train results')
-    print(classification_report(y_train, y_train_preds_rf))
-
-    print('logistic regression results')
-    print('test results')
-    print(classification_report(y_test, y_test_preds_lr))
-    print('train results')
-    print(classification_report(y_train, y_train_preds_lr))
+    # logging.info('random forest results')
+    # logging.info('test results')
+    # logging.info(classification_report(y_test, y_test_preds_rf))
+    #
+    # logging.info('train results')
+    # logging.info(classification_report(y_train, y_train_preds_rf))
+    #
+    # logging.info('logistic regression results')
+    # logging.info('test results')
+    # logging.info(classification_report(y_test, y_test_preds_lr))
+    # logging.info('train results')
+    # logging.info(classification_report(y_train, y_train_preds_lr))
 
     lrc_plot = plot_roc_curve(lrc, X_test, y_test)
 
