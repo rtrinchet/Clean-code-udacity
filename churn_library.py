@@ -2,7 +2,8 @@
 # disabling code to avoid naming like X or X_train
 
 # library doc string
-"""The churn_library.py is a library of functions to find customers who are likely to churn
+"""The churn_library.py is a library of functions to find customers
+who are likely to churn
 """
 import logging
 logging.basicConfig(filename="logs/churn_log.log",
@@ -105,7 +106,8 @@ def perform_eda(df):
 def encoder_helper(df, category_lst):
     """
     helper function to turn each categorical column into a new column with
-    propotion of churn for each category - associated with cell 15 from the notebook
+    propotion of churn for each category - associated with cell 15
+    from the notebook
 
     input:
             df: pandas dataframe
@@ -187,7 +189,8 @@ def classification_report_image(y_train,
                                 y_test_preds_lr,
                                 y_test_preds_rf):
     """
-    produces classification report for training and testing results and stores report as image
+    produces classification report for training and testing results and
+    stores report as image
     in images folder
     input:
             y_train: training response values
@@ -205,11 +208,13 @@ def classification_report_image(y_train,
     plt.text(0.01, 1.25, str('Random Forest Train'), {
              'fontsize': 10}, fontproperties='monospace')
     plt.text(0.01, 0.05, str(classification_report(y_test, y_test_preds_rf)), {
-             'fontsize': 10}, fontproperties='monospace')  # approach improved by OP -> monospace!
+             'fontsize': 10}, fontproperties='monospace')
+    # approach improved by OP -> monospace!
     plt.text(0.01, 0.6, str('Random Forest Test'), {
              'fontsize': 10}, fontproperties='monospace')
     plt.text(0.01, 0.7, str(classification_report(y_train, y_train_preds_rf)), {
-             'fontsize': 10}, fontproperties='monospace')  # approach improved by OP -> monospace!
+             'fontsize': 10}, fontproperties='monospace')
+    # approach improved by OP -> monospace!
     plt.axis('off')
     plt.savefig('images/classrep1.png')
 
@@ -217,11 +222,13 @@ def classification_report_image(y_train,
     plt.text(0.01, 1.25, str('Logistic Regression Train'),
              {'fontsize': 10}, fontproperties='monospace')
     plt.text(0.01, 0.05, str(classification_report(y_train, y_train_preds_lr)), {
-             'fontsize': 10}, fontproperties='monospace')  # approach improved by OP -> monospace!
+             'fontsize': 10}, fontproperties='monospace')
+    # approach improved by OP -> monospace!
     plt.text(0.01, 0.6, str('Logistic Regression Test'), {
              'fontsize': 10}, fontproperties='monospace')
     plt.text(0.01, 0.7, str(classification_report(y_test, y_test_preds_lr)), {
-             'fontsize': 10}, fontproperties='monospace')  # approach improved by OP -> monospace!
+             'fontsize': 10}, fontproperties='monospace')
+    # approach improved by OP -> monospace!
     plt.axis('off')
     plt.savefig('images/classrep2.png')
 
